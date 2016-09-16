@@ -1,0 +1,26 @@
+@import '_variables.styl'
+
+/**
+  * Basic button styling
+*/
+
+.btn
+  background $primary
+  color      $white
+  padding    6px 14px
+  border     2px solid $primary
+  margin     4px
+  cursor     pointer
+  transition all .25s ease
+
+  &:hover
+    background $white
+    color      $primary
+
+  &--alt
+    color      $primary
+    background $white
+    border     2px solid transparent
+
+    &:hover
+      border 2px solid $primary
