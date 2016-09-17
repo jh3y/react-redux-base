@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const path    = require('path');
 
 
 /**
@@ -21,7 +22,8 @@ const config = {
         query: {
           presets: [
             'es2015',
-            'react'
+            'react',
+            'stage-0'
           ]
         }
       },
@@ -33,6 +35,10 @@ const config = {
     ]
   },
   resolve: {
+    root: [
+      path.resolve('src/script'),
+      path.resolve('src/style')
+    ],
     extensions: [ '', '.js', '.jsx' ]
   },
   plugins: [],

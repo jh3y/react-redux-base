@@ -13,15 +13,23 @@ import Todo from './todo';
 */
 describe('todo component', function(){
   it('renders correct element w/ attributes', function() {
-    const todoModel = {
-      id: 'todo-test',
-      title: 'test-title',
-      description: 'test-description'
-    };
+    const id = 'TEST';
+    const title = 'TEST';
+    const description = 'TEST';
+    const onUpdate = () => {};
+    const onDelete = () => {};
     const todoRenderer = ReactTestUtils.createRenderer();
-    todoRenderer.render(<Todo id={ todoModel.id } title={ todoModel.title} description={ todoModel.description }/>);
+    todoRenderer.render(
+      <Todo
+        id = { id }
+        title = { title}
+        description = { description }
+        onDelete = { onDelete }
+        onUpdate = { onUpdate }
+      />
+    );
     const testTodo = todoRenderer.getRenderOutput();
     expect(testTodo.props.className).to.equal('todo');
-    expect(testTodo.props.id).to.equal('todo-test');
+    expect(testTodo.props.id).to.equal('TEST');
   });
 });

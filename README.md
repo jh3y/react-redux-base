@@ -1,4 +1,4 @@
-# react-base
+# react-redux-base
 
 A boilerplate for react applications that addresses some common gotchas and teething problems :sunglasses:
 
@@ -9,7 +9,7 @@ Featuring;
 * `react-router`
 * `webpack`
 * `webpack-dev-server`
-* `flux`
+* `redux`
 * `react-test-utils`
 
 ## Usage

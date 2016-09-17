@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react';
 
-import Header from '../components/header/header';
-import Footer from '../components/footer/footer';
+import Header from 'components/header/header';
+import Footer from 'components/footer/footer';
+
 
 /**
   * Main layout component for app
@@ -9,11 +10,14 @@ import Footer from '../components/footer/footer';
   * Used as the root component and always consists of header and footer along
   * with related page content
 */
-const Layout = (props) => {
+const CoreLayout = (props) => {
   return (
     <div className='container'>
       <Header/>
       <div className='container'>
+        {/*
+          Here is where we pass through the child components for rendering
+        */}
         { props.children }
       </div>
       <Footer/>
@@ -21,8 +25,8 @@ const Layout = (props) => {
   )
 };
 
-Layout.propTypes = {
+CoreLayout.propTypes = {
   children: PropTypes.element
 };
 
-export default Layout;
+export default CoreLayout;
