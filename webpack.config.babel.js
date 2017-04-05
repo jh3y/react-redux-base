@@ -8,10 +8,23 @@ const IS_DIST = (process.argv.indexOf('--dist') !== -1) ? true : false;
 
 const config = {
   devServer: {
-    port: 1987
+    contentBase: `${__dirname}/public`,
+    hot: true,
   },
+  // devtool: 'cheap-eval-source-map',
   entry: {
-    app: './src/script/index.js',
+
+    app: [
+      'react-hot-loader/patch',
+      // activate HMR for React
+      'webpack-dev-server/client?http://localhost:8080',
+      // bundle the client for webpack-dev-server
+      // and connect to the provided endpoint
+      'webpack/hot/only-dev-server',
+      // bundle the client for hot reloading
+      // only- means to only hot reload for successful updates
+      './src/script/index.js',
+    ],
     /* create a vendor chunk for grabbing vendor resources */
     vendor: [
       'react',
@@ -24,10 +37,10 @@ const config = {
     filename: '[name]-[hash].js'
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.(js|jsx)$/,
-        loader: 'babel',
+        loader: 'babel-loader',
         include: /(src\/script)/,
         query: {
           presets: [
@@ -40,34 +53,49 @@ const config = {
       {
         test: /\.styl$/,
         include: /(src\/)/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader!stylus-loader?paths=src/style')
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            'css-loader',
+            'postcss-loader',
+            'stylus-loader',
+            {
+              loader: 'stylus-loader',
+              options: {
+                paths: 'src/style',
+              },
+            }
+          ],
+        }),
       }
     ]
   },
   resolve: {
-    root: [
+    modules: [
       path.resolve('src/script'),
-      path.resolve('src/style')
+      path.resolve('src/style'),
+      'node_modules',
     ],
-    extensions: [ '', '.js', '.jsx' ]
+    extensions: [ '.js', '.jsx' ]
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    // enable HMR globally
+    new webpack.NamedModulesPlugin(),
+    // prints more readable module names in the browser console on HMR updates
     new HtmlWebpackPlugin({
       template: './src/markup/index.html',
       filename: 'index.html',
       chunks: ['vendor', 'app']
     }),
-    new webpack.optimize.CommonsChunkPlugin(
-      /* chunkName= */'vendor',
-      /* filename= */'vendor.js'
-    ),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor', /* chunkName= */
+      filename: 'vendor.js' /* filename= */
+    }),
     new ExtractTextPlugin('app.css'),
     /* If --dist is present in process opts then minimize bundles */
-    (IS_DIST) ? new webpack.optimize.UglifyJsPlugin() : function () {}
+    (IS_DIST) ? new webpack.optimize.UglifyJsPlugin() : function () {},
   ],
-  postcss: function () {
-    return [ autoprefixer ];
-  }
 }
 
 module.exports = config;

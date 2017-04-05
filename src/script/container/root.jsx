@@ -6,13 +6,17 @@ import { Provider } from 'react-redux';
   * NOTE:: Use browserHistory for deployment/prod environments
   * github.com/reactjs/react-router-tutorial/tree/master/lessons/10-clean-urls
 */
-import { Router, hashHistory } from 'react-router';
+import createHistory from 'history/createBrowserHistory'
+import { Router } from 'react-router';
+
+const history = createHistory()
 
 const AppRoot = ({ store, routes }) => {
   return (
     <Provider store={ store }>
-      <Router history={ hashHistory } children={ routes }/>
+      <div>Provider working???</div>
     </Provider>
+    //   <Router history={history} children={ routes }/>
   )
 };
 

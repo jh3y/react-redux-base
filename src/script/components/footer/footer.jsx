@@ -23,7 +23,7 @@ import './footer.styl';
 const Footer = function () {
   return (
     <footer className='footer'>
-      &lt; Made real by <a target="_blank" href='https://github.com/jh3y' className='footer__link'>jh3y</a> | &copy; 2016 /&gt;
+      &lt; Made real by <a target="_blank" href='https://github.com/jh3y' className='footer__link'>jh3y</a> | &copy; Twenty something and two /&gt;
     </footer>
   );
 };

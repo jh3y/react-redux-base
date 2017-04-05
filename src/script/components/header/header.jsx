@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import './header.styl';
 
@@ -20,10 +20,17 @@ const Header = () => {
         </Link>
       </h1>
       <nav className='header-nav'>
-        <Link className='header-nav__link link' activeClassName=' header-nav__link--active' to='/' onlyActiveOnIndex={ true }>
-          Home
+        <Link
+          className='header-nav__link link'
+          // activeClassName=' header-nav__link--active'
+          // onlyActiveOnIndex={ true }
+          to='/'>
+          Please help me
         </Link>
-        <Link className='header-nav__link link' activeClassName=' header-nav__link--active' to='/create'>
+        <Link
+          className='header-nav__link link'
+          // activeClassName=' header-nav__link--active'
+          to='/create'>
           Create
         </Link>
       </nav>

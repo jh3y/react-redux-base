@@ -22,7 +22,7 @@ dist: ## creates dist version of bundles
 	$(WEBPACK) --progress --colors --dist
 
 develop: ## develop source
-	$(SERVER) --progress --colors -d --hot --inline
+	$(SERVER) --progress --colors --inline
 
 setup: ## sets up project
 	npm install
