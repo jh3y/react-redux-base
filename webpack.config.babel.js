@@ -10,6 +10,8 @@ const config = {
   devServer: {
     contentBase: `${__dirname}/public`,
     hot: true,
+    inline: true,
+    port: 1987,
   },
   // devtool: 'cheap-eval-source-map',
   entry: {
@@ -17,7 +19,7 @@ const config = {
     app: [
       'react-hot-loader/patch',
       // activate HMR for React
-      'webpack-dev-server/client?http://localhost:8080',
+      'webpack-dev-server/client?http://localhost:1987',
       // bundle the client for webpack-dev-server
       // and connect to the provided endpoint
       'webpack/hot/only-dev-server',
@@ -44,29 +46,33 @@ const config = {
         include: /(src\/script)/,
         query: {
           presets: [
-            'es2015',
+            ["es2015", {"modules": false}],
             'react',
             'stage-0'
+          ],
+          plugins: [
+            "react-hot-loader/babel"
           ]
         }
       },
       {
         test: /\.styl$/,
         include: /(src\/)/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            'css-loader',
-            'postcss-loader',
-            'stylus-loader',
-            {
-              loader: 'stylus-loader',
-              options: {
-                paths: 'src/style',
-              },
-            }
-          ],
-        }),
+        // use: ExtractTextPlugin.extract({
+        //   fallback: 'style-loader',
+        use: [
+          'style-loader',
+          'css-loader',
+          'postcss-loader',
+          'stylus-loader',
+          {
+            loader: 'stylus-loader',
+            options: {
+              paths: 'src/style',
+            },
+          }
+        ],
+        // }),
       }
     ]
   },

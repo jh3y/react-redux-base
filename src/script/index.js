@@ -1,16 +1,12 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-import 'style.styl';
-
-
 import { AppContainer } from 'react-hot-loader'
 import { createStore } from 'redux';
 import AppReducer from 'reducer/app.reducer';
 
 import Root from 'container/root';
-import routes from 'routes/routes';
-
+// import routes from 'routes/routes';
 
 
 const configureStore = () => {
@@ -36,8 +32,7 @@ const renderApp = (Component) => {
   render(
     <AppContainer>
       <Component
-        store={store}
-        routes={routes}/>
+        store={store}/>
     </AppContainer>,
     document.getElementById('app')
   )
@@ -46,7 +41,17 @@ const renderApp = (Component) => {
 renderApp(Root)
 
 if (module.hot) {
-  module.hot.accept(require.resolve('./container/root'), () => {
-    renderApp(require('./container/root').default)
-  });
+  module.hot.accept('container/root', () => renderApp(Root))
 }
+
+// if (module.hot) {
+//   module.hot.accept(require.resolve('./container/root'), () => {
+//     renderApp(require('./container/root').default)
+//   });
+// }
+
+// if (module.hot) {
+//   module.hot.accept('container/root', () => {
+//     renderApp(Root)
+//   });
+// }

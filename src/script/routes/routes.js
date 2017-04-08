@@ -1,10 +1,10 @@
 import React from 'react'
 import { Route } from 'react-router'
-import CoreLayout from '../layouts/core';
-import CreateLayout from '../layouts/create';
+// import CoreLayout from '../layouts/core';
+// import CreateLayout from '../layouts/create';
 import Root from '../routes/root/root';
-import List from '../routes/list/list';
-import Create from '../routes/create/create';
+// import List from '../routes/list/list';
+// import Create from '../routes/create/create';
 /**
   * Declaritve routes instead of JSX style
   <Router history={ hashHistory }>
@@ -43,14 +43,16 @@ import Create from '../routes/create/create';
 // };
 
 const routes = (
-  <Route component={ CoreLayout }>
-    {/* <Route path='/' component={ App }>
-      <Route component={ Home }/>
-      <Route component={ CreateLayout }>
-        <Route path='/create' component={ Create }/>
-      </Route>
-    </Route> */}
-  </Route>
+  <div>
+    <Route component={ CoreLayout }>
+      {/* <Route path='/' component={ App }>
+        <Route component={ Home }/>
+        <Route component={ CreateLayout }>
+          <Route path='/create' component={ Create }/>
+        </Route>
+      </Route> */}
+    </Route>
+  </div>
 )
 
 export default routes;

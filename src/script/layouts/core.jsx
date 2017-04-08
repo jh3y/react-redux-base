@@ -14,6 +14,7 @@ const CoreLayout = (props) => {
   return (
     <div className='container'>
       <Header/>
+      <div>Seems to play OK?</div>
       <div className='container'>
         {/*
           Here is where we pass through the child components for rendering
