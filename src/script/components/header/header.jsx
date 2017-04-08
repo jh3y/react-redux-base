@@ -42,7 +42,7 @@ class Header extends Component {
   render() {
     return (
       <header>
-        So HMR Header and stuff
+        Headerzzzz
       </header>
     )
   }
